@@ -26,14 +26,7 @@ import Header from "./Header";
 //   },
 // ];
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      subscriberList: [],
-    };
-  }
-
+class ShowSubscibers extends Component {
   deleteHandler(message, id) {
     alert(message + " button " + id + " clicked");
   }
@@ -52,7 +45,7 @@ class App extends Component {
             <span className="grid-item phone-heading">Phone</span>
           </div>
 
-          {this.state.subscriberList.map((sub) => {
+          {this.props.subscribersList.map((sub) => {
             return (
               <div className="grid-container" key={sub.id}>
                 <span className="grid-item">{sub.name}</span>
@@ -80,4 +73,4 @@ class App extends Component {
     // }
   }
 }
-export default App;
+export default ShowSubscibers;
