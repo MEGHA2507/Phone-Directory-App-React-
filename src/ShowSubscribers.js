@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "./App.css";
 import Header from "./Header";
+import { Link } from "react-router-dom";
 
 // function App() {
 // let subscribers = [
@@ -28,7 +29,8 @@ import Header from "./Header";
 
 class ShowSubscibers extends Component {
   deleteHandler(message, id) {
-    alert(message + " button " + id + " clicked");
+    // alert(message + " button " + id + " clicked");
+    this.props.deleteSubscriberHandler(id);
   }
 
   render() {
@@ -38,7 +40,9 @@ class ShowSubscibers extends Component {
       <div>
         <Header heading={phoneDirectory} />
         <div className="home-page">
-          <button className="add-btn">Add</button>
+          <Link to="/add">
+            <button className="add-btn">Add</button>
+          </Link>
 
           <div className="grid-container heading-container">
             <span className="grid-item name-heading">Name</span>
@@ -52,7 +56,7 @@ class ShowSubscibers extends Component {
                 <span className="grid-item">{sub.phone}</span>
                 <button
                   className="grid-item delete-btn"
-                  onClick={this.deleteHandler.bind(this, "Delete", sub.id)}
+                  onClick={this.deleteHandler.bind(this, sub.id)}
                 >
                   Delete
                 </button>

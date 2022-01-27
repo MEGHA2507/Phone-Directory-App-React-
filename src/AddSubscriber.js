@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import "./AddSubscriber.css";
+import { Link } from "react-router-dom";
+import ShowSubscibers from "./ShowSubscribers";
 
 class AddSubscriber extends Component {
   constructor() {
@@ -24,6 +26,8 @@ class AddSubscriber extends Component {
     this.props.addSubscriberHandler(this.state);
     // once submited re initialize to state original value
     this.setState({ id: 0, name: "", phone: "" });
+    // after adding navigates to read only page
+    this.props.history.push("/");
   };
 
   render() {
@@ -32,7 +36,10 @@ class AddSubscriber extends Component {
       <div>
         <Header heading="Add Subscriber" />
         <div className="component-body-container">
-          <button className="back-btn">Back</button>
+          <Link to="/">
+            <button className="back-btn">Back</button>
+          </Link>
+
           <form
             className="subscriber-form"
             onSubmit={this.formSubmitHandler.bind(this)}
