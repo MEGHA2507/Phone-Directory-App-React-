@@ -5,6 +5,8 @@ import "./AddSubscriber.css";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 //import ShowSubscibers from "./ShowSubscribers";
+import { ValidatorForm } from "react-material-ui-form-validator";
+import TextValidator from "react-material-ui-form-validator/lib/TextValidator";
 
 // class AddSubscriber extends Component {
 //   constructor() {
@@ -146,31 +148,31 @@ export default function AddSubscriber({ addSubscriberHandler }) {
           <button className="back-btn">Back</button>
         </Link>
 
-        <form className="subscriber-form" onSubmit={formSubmitHandler}>
-          <label htmlFor="name" className="label-control">
-            Name:{" "}
-          </label>
-          <br />
-          <input
+        <ValidatorForm className="subscriber-form" onSubmit={formSubmitHandler}>
+          <TextValidator
             id="name"
             type="text"
             className="input-control"
             name="name"
+            value={name}
+            label="Enter Name"
             onChange={inputChangeHandler}
-          ></input>
-          <br />
-          <br />
-          <label htmlFor="phone" className="label-control">
-            Phone:
-          </label>
-          <br />
-          <input
+            validators={["required"]}
+            errorMessages={["Name is required."]}
+          ></TextValidator>
+
+          <TextValidator
             id="phone"
             type="text"
             className="input-control"
             name="phone"
             onChange={inputChangeHandler}
-          ></input>
+            label="Enter Phone Number"
+            value={phone}
+            validators={["required"]}
+            errorMessages={["Phone no. is required."]}
+          ></TextValidator>
+
           <br />
           <br />
           <div className="subscriber-details-to-be-added">
@@ -188,7 +190,53 @@ export default function AddSubscriber({ addSubscriberHandler }) {
           <button type="submit" className="custom-btn add-btn">
             ADD
           </button>
-        </form>
+        </ValidatorForm>
+
+        {/* <form className="subscriber-form" onSubmit={formSubmitHandler}>
+          <label htmlFor="name" className="label-control">
+            Name:{" "}
+          </label>
+          <br />
+          <input
+            id="name"
+            type="text"
+            className="input-control"
+            name="name"
+            onChange={inputChangeHandler}
+          ></input>
+
+          <br />
+          <br />
+          <label htmlFor="phone" className="label-control">
+            Phone:
+          </label>
+          <br />
+          <input
+            id="phone"
+            type="text"
+            className="input-control"
+            name="phone"
+            onChange={inputChangeHandler}
+          ></input>
+
+          <br />
+          <br />
+          <div className="subscriber-details-to-be-added">
+            <div className="subscriber-to-be-added">
+              Subscriber Details Added:
+            </div>
+            <br />
+            <div className="subscriber-info subscriber-name">Name: {name}</div>
+            <br />
+            <div className="subscriber-info subscriber-phone">
+              Phone: {phone}
+            </div>
+            <br />
+          </div>
+          <button type="submit" className="custom-btn add-btn">
+            ADD
+          </button>
+        </form> */}
       </div>
     </div>
   );
